@@ -263,73 +263,91 @@ pub type Rights = u64;
 /// The right to invoke `fd_datasync`.
 /// If `path_open` is set, includes the right to invoke
 /// `path_open` with `fdflags::dsync`.
-pub const RIGHTS_FD_DATASYNC: Rights = 0x1;
+pub const RIGHTS_FD_DATASYNC: Rights = 0x0;
 /// The right to invoke `fd_read` and `sock_recv`.
 /// If `rights::fd_seek` is set, includes the right to invoke `fd_pread`.
-pub const RIGHTS_FD_READ: Rights = 0x2;
+pub const RIGHTS_FD_READ: Rights = 0x1;
 /// The right to invoke `fd_seek`. This flag implies `rights::fd_tell`.
-pub const RIGHTS_FD_SEEK: Rights = 0x4;
+pub const RIGHTS_FD_SEEK: Rights = 0x2;
 /// The right to invoke `fd_fdstat_set_flags`.
-pub const RIGHTS_FD_FDSTAT_SET_FLAGS: Rights = 0x8;
+pub const RIGHTS_FD_FDSTAT_SET_FLAGS: Rights = 0x3;
 /// The right to invoke `fd_sync`.
 /// If `path_open` is set, includes the right to invoke
 /// `path_open` with `fdflags::rsync` and `fdflags::dsync`.
-pub const RIGHTS_FD_SYNC: Rights = 0x10;
+pub const RIGHTS_FD_SYNC: Rights = 0x4;
 /// The right to invoke `fd_seek` in such a way that the file offset
 /// remains unaltered (i.e., `whence::cur` with offset zero), or to
 /// invoke `fd_tell`.
-pub const RIGHTS_FD_TELL: Rights = 0x20;
+pub const RIGHTS_FD_TELL: Rights = 0x5;
 /// The right to invoke `fd_write` and `sock_send`.
 /// If `rights::fd_seek` is set, includes the right to invoke `fd_pwrite`.
-pub const RIGHTS_FD_WRITE: Rights = 0x40;
+pub const RIGHTS_FD_WRITE: Rights = 0x6;
 /// The right to invoke `fd_advise`.
-pub const RIGHTS_FD_ADVISE: Rights = 0x80;
+pub const RIGHTS_FD_ADVISE: Rights = 0x7;
 /// The right to invoke `fd_allocate`.
-pub const RIGHTS_FD_ALLOCATE: Rights = 0x100;
+pub const RIGHTS_FD_ALLOCATE: Rights = 0x8;
 /// The right to invoke `path_create_directory`.
-pub const RIGHTS_PATH_CREATE_DIRECTORY: Rights = 0x200;
+pub const RIGHTS_PATH_CREATE_DIRECTORY: Rights = 0x9;
 /// If `path_open` is set, the right to invoke `path_open` with `oflags::creat`.
-pub const RIGHTS_PATH_CREATE_FILE: Rights = 0x400;
+pub const RIGHTS_PATH_CREATE_FILE: Rights = 0xa;
 /// The right to invoke `path_link` with the file descriptor as the
 /// source directory.
-pub const RIGHTS_PATH_LINK_SOURCE: Rights = 0x800;
+pub const RIGHTS_PATH_LINK_SOURCE: Rights = 0xb;
 /// The right to invoke `path_link` with the file descriptor as the
 /// target directory.
-pub const RIGHTS_PATH_LINK_TARGET: Rights = 0x1000;
+pub const RIGHTS_PATH_LINK_TARGET: Rights = 0xc;
 /// The right to invoke `path_open`.
-pub const RIGHTS_PATH_OPEN: Rights = 0x2000;
+pub const RIGHTS_PATH_OPEN: Rights = 0xd;
 /// The right to invoke `fd_readdir`.
-pub const RIGHTS_FD_READDIR: Rights = 0x4000;
+pub const RIGHTS_FD_READDIR: Rights = 0xe;
 /// The right to invoke `path_readlink`.
-pub const RIGHTS_PATH_READLINK: Rights = 0x8000;
+pub const RIGHTS_PATH_READLINK: Rights = 0xf;
 /// The right to invoke `path_rename` with the file descriptor as the source directory.
-pub const RIGHTS_PATH_RENAME_SOURCE: Rights = 0x10000;
+pub const RIGHTS_PATH_RENAME_SOURCE: Rights = 0x10;
 /// The right to invoke `path_rename` with the file descriptor as the target directory.
-pub const RIGHTS_PATH_RENAME_TARGET: Rights = 0x20000;
+pub const RIGHTS_PATH_RENAME_TARGET: Rights = 0x11;
 /// The right to invoke `path_filestat_get`.
-pub const RIGHTS_PATH_FILESTAT_GET: Rights = 0x40000;
+pub const RIGHTS_PATH_FILESTAT_GET: Rights = 0x12;
 /// The right to change a file's size (there is no `path_filestat_set_size`).
 /// If `path_open` is set, includes the right to invoke `path_open` with `oflags::trunc`.
-pub const RIGHTS_PATH_FILESTAT_SET_SIZE: Rights = 0x80000;
+pub const RIGHTS_PATH_FILESTAT_SET_SIZE: Rights = 0x13;
 /// The right to invoke `path_filestat_set_times`.
-pub const RIGHTS_PATH_FILESTAT_SET_TIMES: Rights = 0x100000;
+pub const RIGHTS_PATH_FILESTAT_SET_TIMES: Rights = 0x14;
 /// The right to invoke `fd_filestat_get`.
-pub const RIGHTS_FD_FILESTAT_GET: Rights = 0x200000;
+pub const RIGHTS_FD_FILESTAT_GET: Rights = 0x15;
 /// The right to invoke `fd_filestat_set_size`.
-pub const RIGHTS_FD_FILESTAT_SET_SIZE: Rights = 0x400000;
+pub const RIGHTS_FD_FILESTAT_SET_SIZE: Rights = 0x16;
 /// The right to invoke `fd_filestat_set_times`.
-pub const RIGHTS_FD_FILESTAT_SET_TIMES: Rights = 0x800000;
+pub const RIGHTS_FD_FILESTAT_SET_TIMES: Rights = 0x17;
 /// The right to invoke `path_symlink`.
-pub const RIGHTS_PATH_SYMLINK: Rights = 0x1000000;
+pub const RIGHTS_PATH_SYMLINK: Rights = 0x18;
 /// The right to invoke `path_remove_directory`.
-pub const RIGHTS_PATH_REMOVE_DIRECTORY: Rights = 0x2000000;
+pub const RIGHTS_PATH_REMOVE_DIRECTORY: Rights = 0x19;
 /// The right to invoke `path_unlink_file`.
-pub const RIGHTS_PATH_UNLINK_FILE: Rights = 0x4000000;
+pub const RIGHTS_PATH_UNLINK_FILE: Rights = 0x1a;
 /// If `rights::fd_read` is set, includes the right to invoke `poll_oneoff` to subscribe to `eventtype::fd_read`.
 /// If `rights::fd_write` is set, includes the right to invoke `poll_oneoff` to subscribe to `eventtype::fd_write`.
-pub const RIGHTS_POLL_FD_READWRITE: Rights = 0x8000000;
-/// The right to invoke `sock_shutdown`.
-pub const RIGHTS_SOCK_SHUTDOWN: Rights = 0x10000000;
+pub const RIGHTS_POLL_FD_READWRITE: Rights = 0x1b;
+/// Connect to an address
+pub const RIGHTS_SOCK_CONNECT: Rights = 0x1c;
+/// Listen for incoming connection on an address
+pub const RIGHTS_SOCK_LISTEN: Rights = 0x1d;
+/// Bind an address to a socket
+pub const RIGHTS_SOCK_BIND: Rights = 0x1e;
+/// Accept incoming connection
+pub const RIGHTS_SOCK_ACCEPT: Rights = 0x1f;
+/// Receive data on a socket
+pub const RIGHTS_SOCK_RECV: Rights = 0x20;
+/// Send data on a socket
+pub const RIGHTS_SOCK_SEND: Rights = 0x21;
+/// Retrieve locally bound address on a socket
+pub const RIGHTS_SOCK_ADDR_LOCAL: Rights = 0x22;
+/// Retrieve remote address on a socket
+pub const RIGHTS_SOCK_ADDR_REMOTE: Rights = 0x23;
+/// Receive datagram on a socket
+pub const RIGHTS_SOCK_RECV_FROM: Rights = 0x24;
+/// Send datagram on a socket
+pub const RIGHTS_SOCK_SEND_TO: Rights = 0x25;
 pub type Fd = u32;
 #[repr(C)]
 #[derive(Copy, Clone, Debug)]
@@ -404,17 +422,17 @@ pub const ADVICE_DONTNEED: Advice = 4;
 pub const ADVICE_NOREUSE: Advice = 5;
 pub type Fdflags = u16;
 /// Append mode: Data written to the file is always appended to the file's end.
-pub const FDFLAGS_APPEND: Fdflags = 0x1;
+pub const FDFLAGS_APPEND: Fdflags = 0x0;
 /// Write according to synchronized I/O data integrity completion. Only the data stored in the file is synchronized.
-pub const FDFLAGS_DSYNC: Fdflags = 0x2;
+pub const FDFLAGS_DSYNC: Fdflags = 0x1;
 /// Non-blocking mode.
-pub const FDFLAGS_NONBLOCK: Fdflags = 0x4;
+pub const FDFLAGS_NONBLOCK: Fdflags = 0x2;
 /// Synchronized read I/O operations.
-pub const FDFLAGS_RSYNC: Fdflags = 0x8;
+pub const FDFLAGS_RSYNC: Fdflags = 0x3;
 /// Write according to synchronized I/O file integrity completion. In
 /// addition to synchronizing the data stored in the file, the implementation
 /// may also synchronously update the file's metadata.
-pub const FDFLAGS_SYNC: Fdflags = 0x10;
+pub const FDFLAGS_SYNC: Fdflags = 0x4;
 #[repr(C)]
 #[derive(Copy, Clone, Debug)]
 pub struct Fdstat {
@@ -431,25 +449,25 @@ pub struct Fdstat {
 pub type Device = u64;
 pub type Fstflags = u16;
 /// Adjust the last data access timestamp to the value stored in `filestat::atim`.
-pub const FSTFLAGS_ATIM: Fstflags = 0x1;
+pub const FSTFLAGS_ATIM: Fstflags = 0x0;
 /// Adjust the last data access timestamp to the time of clock `clockid::realtime`.
-pub const FSTFLAGS_ATIM_NOW: Fstflags = 0x2;
+pub const FSTFLAGS_ATIM_NOW: Fstflags = 0x1;
 /// Adjust the last data modification timestamp to the value stored in `filestat::mtim`.
-pub const FSTFLAGS_MTIM: Fstflags = 0x4;
+pub const FSTFLAGS_MTIM: Fstflags = 0x2;
 /// Adjust the last data modification timestamp to the time of clock `clockid::realtime`.
-pub const FSTFLAGS_MTIM_NOW: Fstflags = 0x8;
+pub const FSTFLAGS_MTIM_NOW: Fstflags = 0x3;
 pub type Lookupflags = u32;
 /// As long as the resolved path corresponds to a symbolic link, it is expanded.
-pub const LOOKUPFLAGS_SYMLINK_FOLLOW: Lookupflags = 0x1;
+pub const LOOKUPFLAGS_SYMLINK_FOLLOW: Lookupflags = 0x0;
 pub type Oflags = u16;
 /// Create file if it does not exist.
-pub const OFLAGS_CREAT: Oflags = 0x1;
+pub const OFLAGS_CREAT: Oflags = 0x0;
 /// Fail if not a directory.
-pub const OFLAGS_DIRECTORY: Oflags = 0x2;
+pub const OFLAGS_DIRECTORY: Oflags = 0x1;
 /// Fail if file already exists.
-pub const OFLAGS_EXCL: Oflags = 0x4;
+pub const OFLAGS_EXCL: Oflags = 0x2;
 /// Truncate file to size 0.
-pub const OFLAGS_TRUNC: Oflags = 0x8;
+pub const OFLAGS_TRUNC: Oflags = 0x3;
 pub type Linkcount = u64;
 #[repr(C)]
 #[derive(Copy, Clone, Debug)]
@@ -484,7 +502,7 @@ pub const EVENTTYPE_FD_READ: Eventtype = 1;
 pub const EVENTTYPE_FD_WRITE: Eventtype = 2;
 pub type Eventrwflags = u16;
 /// The peer of this socket has closed or disconnected.
-pub const EVENTRWFLAGS_FD_READWRITE_HANGUP: Eventrwflags = 0x1;
+pub const EVENTRWFLAGS_FD_READWRITE_HANGUP: Eventrwflags = 0x0;
 #[repr(C)]
 #[derive(Copy, Clone, Debug)]
 pub struct EventFdReadwrite {
@@ -512,7 +530,7 @@ pub type Subclockflags = u16;
 /// `subscription_clock::id`. If clear, treat the timestamp
 /// provided in `subscription_clock::timeout` relative to the
 /// current time value of clock `subscription_clock::id`.
-pub const SUBCLOCKFLAGS_SUBSCRIPTION_CLOCK_ABSTIME: Subclockflags = 0x1;
+pub const SUBCLOCKFLAGS_SUBSCRIPTION_CLOCK_ABSTIME: Subclockflags = 0x0;
 #[repr(C)]
 #[derive(Copy, Clone, Debug)]
 pub struct SubscriptionClock {
@@ -652,18 +670,79 @@ pub const SIGNAL_PWR: Signal = 29;
 pub const SIGNAL_SYS: Signal = 30;
 pub type Riflags = u16;
 /// Returns the message without removing it from the socket's receive queue.
-pub const RIFLAGS_RECV_PEEK: Riflags = 0x1;
+pub const RIFLAGS_RECV_PEEK: Riflags = 0x0;
 /// On byte-stream sockets, block until the full amount of data can be returned.
-pub const RIFLAGS_RECV_WAITALL: Riflags = 0x2;
+pub const RIFLAGS_RECV_WAITALL: Riflags = 0x1;
 pub type Roflags = u16;
 /// Returned by `sock_recv`: Message data has been truncated.
-pub const ROFLAGS_RECV_DATA_TRUNCATED: Roflags = 0x1;
+pub const ROFLAGS_RECV_DATA_TRUNCATED: Roflags = 0x0;
+pub type SockType = u8;
+/// The file descriptor or file refers to a datagram socket.
+pub const SOCK_TYPE_SOCKET_DGRAM: SockType = 0;
+/// The file descriptor or file refers to a byte-stream socket.
+pub const SOCK_TYPE_SOCKET_STREAM: SockType = 1;
+pub type IpPort = u16;
+pub type AddrType = u8;
+/// IPv4 address
+pub const ADDR_TYPE_IP4: AddrType = 0;
+/// IPv6 address
+pub const ADDR_TYPE_IP6: AddrType = 1;
+#[repr(C)]
+#[derive(Copy, Clone, Debug)]
+pub struct AddrIp4 {
+    pub n0: u8,
+    pub n1: u8,
+    pub h0: u8,
+    pub h1: u8,
+}
+#[repr(C)]
+#[derive(Copy, Clone, Debug)]
+pub struct AddrIp4Port {
+    pub addr: AddrIp4,
+    pub port: IpPort,
+}
+#[repr(C)]
+#[derive(Copy, Clone, Debug)]
+pub struct AddrIp6 {
+    pub n0: u16,
+    pub n1: u16,
+    pub n2: u16,
+    pub n3: u16,
+    pub h0: u16,
+    pub h1: u16,
+    pub h2: u16,
+    pub h3: u16,
+}
+#[repr(C)]
+#[derive(Copy, Clone, Debug)]
+pub struct AddrIp6Port {
+    pub addr: AddrIp6,
+    pub port: IpPort,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub union AddrU {
+    pub ip4: AddrIp4Port,
+    pub ip6: AddrIp6Port,
+}
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct Addr {
+    pub tag: AddrType,
+    pub u: AddrU,
+}
+
+pub type AddressFamily = u8;
+/// IP v4
+pub const ADDRESS_FAMILY_INET4: AddressFamily = 0;
+/// IP v6
+pub const ADDRESS_FAMILY_INET6: AddressFamily = 1;
 pub type Siflags = u16;
 pub type Sdflags = u8;
 /// Disables further receive operations.
-pub const SDFLAGS_RD: Sdflags = 0x1;
+pub const SDFLAGS_RD: Sdflags = 0x0;
 /// Disables further send operations.
-pub const SDFLAGS_WR: Sdflags = 0x2;
+pub const SDFLAGS_WR: Sdflags = 0x1;
 pub type Preopentype = u8;
 /// A pre-opened directory.
 pub const PREOPENTYPE_DIR: Preopentype = 0;
@@ -1044,8 +1123,8 @@ pub unsafe fn fd_read(fd: Fd, iovs: IovecArray<'_>) -> Result<Size> {
 
 /// Read directory entries from a directory.
 /// When successful, the contents of the output buffer consist of a sequence of
-/// directory entries. Each directory entry consists of a dirent_t object,
-/// followed by dirent_t::d_namlen bytes holding the name of the directory
+/// directory entries. Each directory entry consists of a `dirent` object,
+/// followed by `dirent::d_namlen` bytes holding the name of the directory
 /// entry.
 /// This function fills the output buffer as much as possible, potentially
 /// truncating the last directory entry. This allows the caller to grow its
@@ -1507,66 +1586,383 @@ pub unsafe fn random_get(buf: *mut u8, buf_len: Size) -> Result<()> {
     }
 }
 
-/// Receive a message from a socket.
-/// Note: This is similar to `recv` in POSIX, though it also supports reading
-/// the data into multiple buffers in the manner of `readv`.
+/// Returns the local address to which the socket is bound.
+///
+/// Note: This is similar to `getsockname` in POSIX
+///
+/// When successful, the contents of the output buffer consist of an IP address,
+/// either IP4 or IP6.
 ///
 /// ## Parameters
 ///
-/// * `ri_data` - List of scatter/gather vectors to which to store data.
-/// * `ri_flags` - Message flags.
+/// * `fd` - Host to resolve
+/// * `buf` - The buffer where IP addresses will be stored
+pub unsafe fn sock_addr_local(fd: Fd, buf: *mut u8, buf_len: Size) -> Result<()> {
+    let rc = wasi_snapshot_preview1::sock_addr_local(fd, buf, buf_len);
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(())
+    }
+}
+
+/// Returns the remote address to which the socket is connected to.
+///
+/// Note: This is similar to `getpeername` in POSIX
+///
+/// When successful, the contents of the output buffer consist of an IP address,
+/// either IP4 or IP6.
+///
+/// ## Parameters
+///
+/// * `fd` - Host to resolve
+/// * `buf` - The buffer where IP addresses will be stored
+pub unsafe fn sock_addr_remote(fd: Fd, buf: *mut u8, buf_len: Size) -> Result<()> {
+    let rc = wasi_snapshot_preview1::sock_addr_remote(fd, buf, buf_len);
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(())
+    }
+}
+
+/// Open a socket
+///
+/// The first argument to this function is a handle to an
+/// address pool. The address pool determines what actions can
+/// be performed and at which addresses they can be performed to.
+///
+/// The address pool cannot be re-assigned. You will need to close
+/// the socket and open a new one to use a different address pool.
+///
+/// Note: This is similar to `socket` in POSIX using PF_INET
+///
+/// ## Parameters
+///
+/// * `pool` - Address pool file descriptor
+/// * `af` - Address family
+/// * `socktype` - Socket type, either datagram or stream
 ///
 /// ## Return
 ///
-/// * `ro_datalen` - Number of bytes stored in ri_data.
-/// * `ro_flags` - Message flags.
-pub unsafe fn sock_recv(
+/// * `fd` - The opened socket
+pub unsafe fn sock_open(pool: Fd, af: AddressFamily, socktype: SockType) -> Result<Fd> {
+    let mut fd = MaybeUninit::uninit();
+    let rc = wasi_snapshot_preview1::sock_open(pool, af, socktype, fd.as_mut_ptr());
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(fd.assume_init())
+    }
+}
+
+/// Close a socket (this is an alias for `fd_close`)
+/// Note: This is similar to `close` in POSIX.
+///
+/// ## Parameters
+///
+/// * `fd` - Socket descriptor
+pub unsafe fn sock_close(fd: Fd) -> Result<()> {
+    let rc = wasi_snapshot_preview1::sock_close(fd);
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(())
+    }
+}
+
+/// Enable/disable address reuse on a socket
+/// Note: This is similar to `setsockopt` in POSIX for SO_REUSEADDR
+///
+/// ## Parameters
+///
+/// * `fd` - Socket descriptor
+/// * `reuse` - 1 to enable, 0 to disable
+pub unsafe fn sock_set_reuse_addr(fd: Fd, reuse: u8) -> Result<()> {
+    let rc = wasi_snapshot_preview1::sock_set_reuse_addr(fd, reuse);
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(())
+    }
+}
+
+/// Retrieve status of address reuse on a socket
+/// Note: This is similar to `getsockopt` in POSIX for SO_REUSEADDR
+///
+/// ## Parameters
+///
+/// * `fd` - Socket descriptor
+pub unsafe fn sock_get_reuse_addr(fd: Fd) -> Result<u8> {
+    let mut reuse = MaybeUninit::uninit();
+    let rc = wasi_snapshot_preview1::sock_get_reuse_addr(fd, reuse.as_mut_ptr());
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(reuse.assume_init())
+    }
+}
+
+/// Enable port reuse on a socket
+/// Note: This is similar to `setsockopt` in POSIX for SO_REUSEPORT
+///
+/// ## Parameters
+///
+/// * `fd` - Socket descriptor
+/// * `reuse` - 1 to enable, 0 to disable
+pub unsafe fn sock_set_reuse_port(fd: Fd, reuse: u8) -> Result<()> {
+    let rc = wasi_snapshot_preview1::sock_set_reuse_port(fd, reuse);
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(())
+    }
+}
+
+/// Retrieve status of port reuse on a socket
+/// Note: This is similar to `getsockopt` in POSIX for SO_REUSEPORT
+///
+/// ## Parameters
+///
+/// * `fd` - Socket descriptor
+pub unsafe fn sock_get_reuse_port(fd: Fd) -> Result<u8> {
+    let mut reuse = MaybeUninit::uninit();
+    let rc = wasi_snapshot_preview1::sock_get_reuse_port(fd, reuse.as_mut_ptr());
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(reuse.assume_init())
+    }
+}
+
+/// Set size of receive buffer
+/// Note: This is similar to `setsockopt` in POSIX for SO_RCVBUF
+///
+/// ## Parameters
+///
+/// * `fd` - Socket descriptor
+/// * `size` - Buffer size
+pub unsafe fn sock_set_recv_buf_size(fd: Fd, size: Size) -> Result<()> {
+    let rc = wasi_snapshot_preview1::sock_set_recv_buf_size(fd, size);
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(())
+    }
+}
+
+/// Retrieve the size of the receive buffer
+/// Note: This is similar to `getsockopt` in POSIX for SO_RCVBUF
+///
+/// ## Parameters
+///
+/// * `fd` - Socket descriptor
+pub unsafe fn sock_get_recv_buf_size(fd: Fd) -> Result<Size> {
+    let mut size = MaybeUninit::uninit();
+    let rc = wasi_snapshot_preview1::sock_get_recv_buf_size(fd, size.as_mut_ptr());
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(size.assume_init())
+    }
+}
+
+/// Set size of send buffer
+/// Note: This is similar to `setsockopt` in POSIX for SO_SNDBUF
+///
+/// ## Parameters
+///
+/// * `fd` - Socket descriptor
+/// * `size` - Buffer size
+pub unsafe fn sock_set_send_buf_size(fd: Fd, size: Size) -> Result<()> {
+    let rc = wasi_snapshot_preview1::sock_set_send_buf_size(fd, size);
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(())
+    }
+}
+
+/// Retrieve the size of the send buffer
+/// Note: This is similar to `getsockopt` in POSIX for SO_SNDBUF
+///
+/// ## Parameters
+///
+/// * `fd` - Socket descriptor
+pub unsafe fn sock_get_send_buf_size(fd: Fd) -> Result<Size> {
+    let mut size = MaybeUninit::uninit();
+    let rc = wasi_snapshot_preview1::sock_get_send_buf_size(fd, size.as_mut_ptr());
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(size.assume_init())
+    }
+}
+
+/// Bind a socket
+/// Note: This is similar to `bind` in POSIX using PF_INET
+///
+/// ## Parameters
+///
+/// * `fd` - File descriptor of the socket to be bind
+/// * `addr` - Address to bind the socket to
+pub unsafe fn sock_bind(fd: Fd, addr: *mut Addr) -> Result<()> {
+    let rc = wasi_snapshot_preview1::sock_bind(fd, addr);
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(())
+    }
+}
+
+/// Listen for connections on a socket
+/// Note: This is similar to `listen`
+///
+/// ## Parameters
+///
+/// * `fd` - File descriptor of the socket to be bind
+/// * `backlog` - Maximum size of the queue for pending connections
+pub unsafe fn sock_listen(fd: Fd, backlog: Size) -> Result<()> {
+    let rc = wasi_snapshot_preview1::sock_listen(fd, backlog);
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(())
+    }
+}
+
+/// Accept a connection on a socket
+/// Note: This is similar to `accept`
+///
+/// ## Parameters
+///
+/// * `fd` - File descriptor of the socket to be bind
+pub unsafe fn sock_accept(fd: Fd) -> Result<Fd> {
+    let mut childfd = MaybeUninit::uninit();
+    let rc = wasi_snapshot_preview1::sock_accept(fd, childfd.as_mut_ptr());
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(childfd.assume_init())
+    }
+}
+
+/// Initiate a connection on a socket to the specified address
+/// Note: This is similar to `connect` in POSIX
+///
+/// ## Parameters
+///
+/// * `fd` - Socket descriptor
+/// * `addr` - Address of the socket to connect to
+pub unsafe fn sock_connect(fd: Fd, addr: *mut Addr) -> Result<()> {
+    let rc = wasi_snapshot_preview1::sock_connect(fd, addr);
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(())
+    }
+}
+
+/// Receive a message from a socket.
+/// Note: This is similar to `recv` in POSIX.
+///
+/// ## Parameters
+///
+/// * `buf` - The buffer where data will be stored
+/// * `flags` - Message flags.
+pub unsafe fn sock_recv(fd: Fd, buf: *mut u8, buf_len: Size, flags: Riflags) -> Result<Size> {
+    let mut bufused = MaybeUninit::uninit();
+    let rc = wasi_snapshot_preview1::sock_recv(fd, buf, buf_len, flags, bufused.as_mut_ptr());
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(bufused.assume_init())
+    }
+}
+
+/// Receive a message from a socket.
+///
+/// The address buffer must be at least the size of addr_t.
+///
+/// Note: This is similar to `recvfrom` in POSIX.
+///
+/// ## Parameters
+///
+/// * `buf` - The buffer where data will be stored
+/// * `addr_buf` - The address of origin for the message
+/// * `flags` - Message flags.
+pub unsafe fn sock_recv_from(
     fd: Fd,
-    ri_data: IovecArray<'_>,
-    ri_flags: Riflags,
-) -> Result<(Size, Roflags)> {
-    let mut ro_datalen = MaybeUninit::uninit();
-    let mut ro_flags = MaybeUninit::uninit();
-    let rc = wasi_snapshot_preview1::sock_recv(
+    buf: *mut u8,
+    buf_len: Size,
+    addr_buf: *mut u8,
+    addr_buf_len: Size,
+    flags: Riflags,
+) -> Result<Size> {
+    let mut bufused = MaybeUninit::uninit();
+    let rc = wasi_snapshot_preview1::sock_recv_from(
         fd,
-        ri_data.as_ptr(),
-        ri_data.len(),
-        ri_flags,
-        ro_datalen.as_mut_ptr(),
-        ro_flags.as_mut_ptr(),
+        buf,
+        buf_len,
+        addr_buf,
+        addr_buf_len,
+        flags,
+        bufused.as_mut_ptr(),
     );
     if let Some(err) = Error::from_raw_error(rc) {
         Err(err)
     } else {
-        Ok((ro_datalen.assume_init(), ro_flags.assume_init()))
+        Ok(bufused.assume_init())
     }
 }
 
 /// Send a message on a socket.
-/// Note: This is similar to `send` in POSIX, though it also supports writing
-/// the data from multiple buffers in the manner of `writev`.
+/// Note: This is similar to `send` in POSIX.
 ///
 /// ## Parameters
 ///
-/// * `si_data` - List of scatter/gather vectors to which to retrieve data
-/// * `si_flags` - Message flags.
+/// * `buf` - The buffer where data will be stored
+/// * `flags` - Message flags.
 ///
 /// ## Return
 ///
-/// * `so_datalen` - Number of bytes transmitted.
-pub unsafe fn sock_send(fd: Fd, si_data: CiovecArray<'_>, si_flags: Siflags) -> Result<Size> {
-    let mut so_datalen = MaybeUninit::uninit();
-    let rc = wasi_snapshot_preview1::sock_send(
-        fd,
-        si_data.as_ptr(),
-        si_data.len(),
-        si_flags,
-        so_datalen.as_mut_ptr(),
-    );
+/// * `bufused` - Number of bytes transmitted.
+pub unsafe fn sock_send(fd: Fd, buf: *mut u8, buf_len: Size, flags: Siflags) -> Result<Size> {
+    let mut bufused = MaybeUninit::uninit();
+    let rc = wasi_snapshot_preview1::sock_send(fd, buf, buf_len, flags, bufused.as_mut_ptr());
     if let Some(err) = Error::from_raw_error(rc) {
         Err(err)
     } else {
-        Ok(so_datalen.assume_init())
+        Ok(bufused.assume_init())
+    }
+}
+
+/// Send a message on a socket.
+/// Note: This is similar to `sendto` in POSIX.
+///
+/// ## Parameters
+///
+/// * `buf` - The buffer where data will be stored
+/// * `addr` - Address of the socket to send message to
+/// * `flags` - Message flags.
+///
+/// ## Return
+///
+/// * `bufused` - Number of bytes transmitted.
+pub unsafe fn sock_send_to(
+    fd: Fd,
+    buf: *mut u8,
+    buf_len: Size,
+    addr: *mut Addr,
+    flags: Siflags,
+) -> Result<Size> {
+    let mut bufused = MaybeUninit::uninit();
+    let rc =
+        wasi_snapshot_preview1::sock_send_to(fd, buf, buf_len, addr, flags, bufused.as_mut_ptr());
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(bufused.assume_init())
     }
 }
 
@@ -1672,8 +2068,8 @@ pub mod wasi_snapshot_preview1 {
         pub fn fd_read(fd: Fd, iovs_ptr: *const Iovec, iovs_len: usize, nread: *mut Size) -> Errno;
         /// Read directory entries from a directory.
         /// When successful, the contents of the output buffer consist of a sequence of
-        /// directory entries. Each directory entry consists of a dirent_t object,
-        /// followed by dirent_t::d_namlen bytes holding the name of the directory
+        /// directory entries. Each directory entry consists of a `dirent` object,
+        /// followed by `dirent::d_namlen` bytes holding the name of the directory
         /// entry.
         /// This function fills the output buffer as much as possible, potentially
         /// truncating the last directory entry. This allows the caller to grow its
@@ -1830,26 +2226,111 @@ pub mod wasi_snapshot_preview1 {
         /// required, it's advisable to use this function to seed a pseudo-random
         /// number generator, rather than to provide the random data directly.
         pub fn random_get(buf: *mut u8, buf_len: Size) -> Errno;
+        /// Returns the local address to which the socket is bound.
+        ///
+        /// Note: This is similar to `getsockname` in POSIX
+        ///
+        /// When successful, the contents of the output buffer consist of an IP address,
+        /// either IP4 or IP6.
+        pub fn sock_addr_local(fd: Fd, buf: *mut u8, buf_len: Size) -> Errno;
+        /// Returns the remote address to which the socket is connected to.
+        ///
+        /// Note: This is similar to `getpeername` in POSIX
+        ///
+        /// When successful, the contents of the output buffer consist of an IP address,
+        /// either IP4 or IP6.
+        pub fn sock_addr_remote(fd: Fd, buf: *mut u8, buf_len: Size) -> Errno;
+        /// Open a socket
+        ///
+        /// The first argument to this function is a handle to an
+        /// address pool. The address pool determines what actions can
+        /// be performed and at which addresses they can be performed to.
+        ///
+        /// The address pool cannot be re-assigned. You will need to close
+        /// the socket and open a new one to use a different address pool.
+        ///
+        /// Note: This is similar to `socket` in POSIX using PF_INET
+        pub fn sock_open(pool: Fd, af: AddressFamily, socktype: SockType, fd: *mut Fd) -> Errno;
+        /// Close a socket (this is an alias for `fd_close`)
+        /// Note: This is similar to `close` in POSIX.
+        pub fn sock_close(fd: Fd) -> Errno;
+        /// Enable/disable address reuse on a socket
+        /// Note: This is similar to `setsockopt` in POSIX for SO_REUSEADDR
+        pub fn sock_set_reuse_addr(fd: Fd, reuse: u8) -> Errno;
+        /// Retrieve status of address reuse on a socket
+        /// Note: This is similar to `getsockopt` in POSIX for SO_REUSEADDR
+        pub fn sock_get_reuse_addr(fd: Fd, reuse: *mut u8) -> Errno;
+        /// Enable port reuse on a socket
+        /// Note: This is similar to `setsockopt` in POSIX for SO_REUSEPORT
+        pub fn sock_set_reuse_port(fd: Fd, reuse: u8) -> Errno;
+        /// Retrieve status of port reuse on a socket
+        /// Note: This is similar to `getsockopt` in POSIX for SO_REUSEPORT
+        pub fn sock_get_reuse_port(fd: Fd, reuse: *mut u8) -> Errno;
+        /// Set size of receive buffer
+        /// Note: This is similar to `setsockopt` in POSIX for SO_RCVBUF
+        pub fn sock_set_recv_buf_size(fd: Fd, size: Size) -> Errno;
+        /// Retrieve the size of the receive buffer
+        /// Note: This is similar to `getsockopt` in POSIX for SO_RCVBUF
+        pub fn sock_get_recv_buf_size(fd: Fd, size: *mut Size) -> Errno;
+        /// Set size of send buffer
+        /// Note: This is similar to `setsockopt` in POSIX for SO_SNDBUF
+        pub fn sock_set_send_buf_size(fd: Fd, size: Size) -> Errno;
+        /// Retrieve the size of the send buffer
+        /// Note: This is similar to `getsockopt` in POSIX for SO_SNDBUF
+        pub fn sock_get_send_buf_size(fd: Fd, size: *mut Size) -> Errno;
+        /// Bind a socket
+        /// Note: This is similar to `bind` in POSIX using PF_INET
+        pub fn sock_bind(fd: Fd, addr: *mut Addr) -> Errno;
+        /// Listen for connections on a socket
+        /// Note: This is similar to `listen`
+        pub fn sock_listen(fd: Fd, backlog: Size) -> Errno;
+        /// Accept a connection on a socket
+        /// Note: This is similar to `accept`
+        pub fn sock_accept(fd: Fd, childfd: *mut Fd) -> Errno;
+        /// Initiate a connection on a socket to the specified address
+        /// Note: This is similar to `connect` in POSIX
+        pub fn sock_connect(fd: Fd, addr: *mut Addr) -> Errno;
         /// Receive a message from a socket.
-        /// Note: This is similar to `recv` in POSIX, though it also supports reading
-        /// the data into multiple buffers in the manner of `readv`.
+        /// Note: This is similar to `recv` in POSIX.
         pub fn sock_recv(
             fd: Fd,
-            ri_data_ptr: *const Iovec,
-            ri_data_len: usize,
-            ri_flags: Riflags,
-            ro_datalen: *mut Size,
-            ro_flags: *mut Roflags,
+            buf: *mut u8,
+            buf_len: Size,
+            flags: Riflags,
+            bufused: *mut Size,
+        ) -> Errno;
+        /// Receive a message from a socket.
+        ///
+        /// The address buffer must be at least the size of addr_t.
+        ///
+        /// Note: This is similar to `recvfrom` in POSIX.
+        pub fn sock_recv_from(
+            fd: Fd,
+            buf: *mut u8,
+            buf_len: Size,
+            addr_buf: *mut u8,
+            addr_buf_len: Size,
+            flags: Riflags,
+            bufused: *mut Size,
         ) -> Errno;
         /// Send a message on a socket.
-        /// Note: This is similar to `send` in POSIX, though it also supports writing
-        /// the data from multiple buffers in the manner of `writev`.
+        /// Note: This is similar to `send` in POSIX.
         pub fn sock_send(
             fd: Fd,
-            si_data_ptr: *const Ciovec,
-            si_data_len: usize,
-            si_flags: Siflags,
-            so_datalen: *mut Size,
+            buf: *mut u8,
+            buf_len: Size,
+            flags: Siflags,
+            bufused: *mut Size,
+        ) -> Errno;
+        /// Send a message on a socket.
+        /// Note: This is similar to `sendto` in POSIX.
+        pub fn sock_send_to(
+            fd: Fd,
+            buf: *mut u8,
+            buf_len: Size,
+            addr: *mut Addr,
+            flags: Siflags,
+            bufused: *mut Size,
         ) -> Errno;
         /// Shut down socket send and receive channels.
         /// Note: This is similar to `shutdown` in POSIX.
