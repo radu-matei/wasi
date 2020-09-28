@@ -1526,6 +1526,25 @@ pub unsafe fn sock_connect(ipv4_addr: u32, port: u16) -> Result<Fd> {
     }
 }
 
+/// Directly bind to a socket.
+///
+/// This is a temporarily workaround that contradicts the philosophy of WASI,
+/// but which is necessary for enabling an entire suite of networking workloads.
+///
+/// As the sockets proposal is adapted, this should be entirely removed and replaced
+/// with that proposal.
+///
+/// See https://github.com/WebAssembly/WASI/pull/312
+pub unsafe fn sock_bind(ipv4_addr: u32, port: u16) -> Result<Fd> {
+    let mut sock_fd = MaybeUninit::uninit();
+    let rc = wasi_snapshot_preview1::sock_bind(ipv4_addr, port, sock_fd.as_mut_ptr());
+    if let Some(err) = Error::from_raw_error(rc) {
+        Err(err)
+    } else {
+        Ok(sock_fd.assume_init())
+    }
+}
+
 /// Receive a message from a socket.
 /// Note: This is similar to `recv` in POSIX, though it also supports reading
 /// the data into multiple buffers in the manner of `readv`.
@@ -1859,6 +1878,16 @@ pub mod wasi_snapshot_preview1 {
         ///
         /// See https://github.com/WebAssembly/WASI/pull/312
         pub fn sock_connect(ipv4_addr: u32, port: u16, sock_fd: *mut Fd) -> Errno;
+        /// Directly bind to a socket.
+        ///
+        /// This is a temporarily workaround that contradicts the philosophy of WASI,
+        /// but which is necessary for enabling an entire suite of networking workloads.
+        ///
+        /// As the sockets proposal is adapted, this should be entirely removed and replaced
+        /// with that proposal.
+        ///
+        /// See https://github.com/WebAssembly/WASI/pull/312
+        pub fn sock_bind(ipv4_addr: u32, port: u16, sock_fd: *mut Fd) -> Errno;
         /// Receive a message from a socket.
         /// Note: This is similar to `recv` in POSIX, though it also supports reading
         /// the data into multiple buffers in the manner of `readv`.
